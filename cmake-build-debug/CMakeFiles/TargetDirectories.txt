@@ -1,0 +1,3 @@
+/Users/isaachernandez/CLionProjects/PA9/cmake-build-debug/CMakeFiles/PA9.dir
+/Users/isaachernandez/CLionProjects/PA9/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/isaachernandez/CLionProjects/PA9/cmake-build-debug/CMakeFiles/rebuild_cache.dir
