@@ -26,13 +26,13 @@ void game_entity_inclass::initialize(const std::string& texturePath) {
     }
     sprite.setTexture(texture);
 }
-// screenWidth and screenHeight are used to set the position of the entity
+// screenwidth and screen height are used to set the position of the entity
 void game_entity_inclass::update(float deltaTime, float screenWidth, float screenHeight) {
-    sprite.setPosition(position.x, position.y);
+    sprite.setPosition(position);
 }
 
 void game_entity_inclass::render(sf::RenderWindow& window) {
     if (active) {
-		window.draw(sprite);   //draw at curren t position
+		window.draw(sprite);   //draw at current position
     }
 }
