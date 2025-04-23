@@ -9,7 +9,7 @@ Game_Loop::~Game_Loop() {
 void Game_Loop::initialize() {  //800x600 res. with title "Duck Hunt" on window. 
     //if needed add the scoring and other input handlers
     game = std::make_unique<hunt_game_class>();
-    game->initialize(800, 600, "Duck Hunt");
+    game->initialize(1920, 1080, "Duck Hunt");
 }
 
 /*
