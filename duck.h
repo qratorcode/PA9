@@ -6,6 +6,7 @@
 #include "entity.h"
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 class duck : public game_entity_inclass {
 private:
