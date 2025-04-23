@@ -27,6 +27,10 @@ private:
     sf::Sprite SFML_crosshair;
     sf::Texture asset_gun_crosshair;
     sf::RectangleShape fixed_line_shoot;                      //most explained in game.cpp
+    std::vector<sf::Texture> scoreTextures;
+    std::vector<sf::Sprite> scoreSprites;
+    int currentScore;
+    void updateScoreDisplay();
 
     bool use_fixed_line;
     std::unique_ptr<class_handle_user_input> input_handler;
