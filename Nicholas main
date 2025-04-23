@@ -2,7 +2,7 @@
 
 int main() {
     Game_Loop gameLoop;
-    gameLoop.initialize();  //sets up window and game sytems
+    gameLoop.initialize();  //this sets up window and game sytems
     gameLoop.run();  //enters core game loop
     gameLoop.shutdown();  //shuts game down 
 
@@ -14,3 +14,7 @@ int main() {
 
 //this main will be fully implimented when 
 //Isa's hand code and Garimas assets are combined with Nicholas's game logic code
+
+
+//many of the functions or proccesses are not implimented yet. or were impliomented then scrapped. for example the R for reload was scrapped. we are just short on time so I am unable to properly
+//delete everything
