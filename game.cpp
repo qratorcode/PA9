@@ -36,7 +36,7 @@ void hunt_game_class::initialize(int width, int height, const std::string& title
         backgroundSprite.setTexture(landscape_texture_asset);
     }
 
-    if (!asset_gun_crosshair.loadFromFile("C:\\Users\\Nicholas\\Downloads\\crosshair.png")) {                       //load the crosshair texture
+    if (!asset_gun_crosshair.loadFromFile("C:\\Users\\Nicholas\\Downloads\\crosshair.png")) {                       //loading  the crosshair texture
         std::cout << "error failed to load the crosshair texture/sprite" << std::endl;
     }
     else {
@@ -81,35 +81,35 @@ void hunt_game_class::duck_collision_check() {
 void hunt_game_class::handleEvents() {}
 
 void hunt_game_class::update(float deltaTime) {
-    // Remove dead ducks
+    // remove dead ducks
     ducks.erase(
         std::remove_if(ducks.begin(), ducks.end(),
             [](const std::unique_ptr<duck>& d) { return !d->isAlive(); }),
         ducks.end()
     );
 
-    // If no ducks exist, spawn one
+	// spawn a duck if there are none
     if (ducks.empty()) {
         duck_spawn_r();
     }
 
-    // Temporary vector to track ducks that have left the screen
+    // temp vector to track ducks that left screen
     std::vector<size_t> ducksToRemove;
 
-    // Update all existing ducks
+    // update all for ducks
     for (size_t i = 0; i < ducks.size(); i++) {
         auto& duck = ducks[i];
         duck->update(deltaTime, window->getSize().x, window->getSize().y);
 
-        // Only mark ducks that are COMPLETELY off screen or dead
+       
         if (!duck->isAlive() || (duck->getPosition().x > window->getSize().x && !duck->duck_flying_current())) {
             ducksToRemove.push_back(i);
         }
     }
 
-    // If any ducks were marked for removal, spawn ONE new duck
+	// when a duck dies/escapes spawn a new one
     if (!ducksToRemove.empty()) {
-        // Remove all ducks that left the screen or are dead
+        
         for (int i = ducksToRemove.size() - 1; i >= 0; i--) {
             size_t index = ducksToRemove[i];
             if (index < ducks.size()) {
@@ -117,17 +117,17 @@ void hunt_game_class::update(float deltaTime) {
             }
         }
 
-        // Spawn just ONE new duck
-        duck_spawn_r();
+        
+        duck_spawn_r(); //only spawns one
     }
 
-    // Update input handler for crosshair
+	// input handler crosshair update
     if (input_handler) {
         input_handler->update(*window);
         SFML_crosshair.setPosition(input_handler->getAimPosition());
     }
 
-    // Check for duck collisions with crosshair
+	// crosshair and duck collision check
     duck_collision_check();
 }
 
@@ -140,7 +140,7 @@ void hunt_game_class::render() {
 
         // draw all ducks
         for (const auto& duck : ducks) {
-            if (duck->isAlive()) { // render alive ducks only
+            if (duck->isAlive()) { // rendering dycks that are alive
                 duck->render(*window);
             }
         }
