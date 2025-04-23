@@ -25,13 +25,13 @@ main game loop:"
 
 
 void Game_Loop::run() {
-   
+
     while (game->running()) { //main loop
         deltaTime = clock.restart().asSeconds(); //delta time to prevent extreme values
         if (deltaTime > 0.25f) deltaTime = 0.25f; // max fram time is 250ms
 
 
-        
+
         game->handleEvents();
         game->update(deltaTime);         //core game loop sequence
         game->render();
