@@ -13,7 +13,7 @@ protected:
 public:
     game_entity_inclass();
     virtual ~game_entity_inclass();
-                                                                        //explained in the entity.cpp
+    //explained in the entity.cpp
     virtual void initialize(const std::string& texturePath);
     virtual void update(float deltaTime, float screenWidth, float screenHeight);
     virtual void render(sf::RenderWindow& window);
