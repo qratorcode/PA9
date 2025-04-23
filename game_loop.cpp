@@ -6,10 +6,10 @@ Game_Loop::Game_Loop() : deltaTime(0.0f) {      //initializes with zero values
 Game_Loop::~Game_Loop() {
 }
 
-void Game_Loop::initialize() {  //800x600 res. with title "Duck Hunt" on window. 
+void Game_Loop::initialize() {  
     //if needed add the scoring and other input handlers
     game = std::make_unique<hunt_game_class>();
-    game->initialize(1920, 1080, "Duck Hunt");
+    game->initialize(1920, 1080, "Duck Hunt");  //1920x1080 for game resolution. change to whatever you prefer. this is the place to do it :)
 }
 
 /*
