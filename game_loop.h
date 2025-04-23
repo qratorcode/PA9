@@ -19,5 +19,5 @@ public:                            //comments explain game loop in game_loop.cpp
     void initialize();
     void run();
     void shutdown();
-}; 
+};
 #endif // GAME_LOOP_H
