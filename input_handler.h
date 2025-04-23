@@ -30,7 +30,7 @@ private:
     bool past_tense_Rpress;
 
 public:
-    class_handle_user_input();    
+    class_handle_user_input();
     ~class_handle_user_input();
 
     void update(sf::RenderWindow& window);
