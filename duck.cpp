@@ -26,7 +26,7 @@ void duck::spawn(float screenWidth, float screenHeight) {
     duck_alive = true;
 	active = true; //entitiy is active
 
-	sprite.setPosition(position); //update the sprite position
+	sprite.setPosition(position.x, position.y); //update the sprite position
 }
 
 void duck::update(float deltaTime, float screenWidth, float screenHeight) {

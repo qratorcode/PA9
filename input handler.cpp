@@ -1,8 +1,3 @@
-//this is the input handler .
-//handles inputs from user
-//left and right mouse buttons as well as r key can be swapped for hand controls :)
-
-
 #include "input_handler.h"
 
 class_handle_user_input::class_handle_user_input() : //constructor intizilizing all input states to false 
@@ -24,11 +19,11 @@ void class_handle_user_input::update(sf::RenderWindow& window) {      //every fr
                                           //previous states are stored
     past_tense_Rpress = Rpress;
 
-    curr_mouse_pos = sf::Vector2f(sf::Mouse::getter_mousePosition_curr(window));          //screen ccoordinates of mouse/cursor/handcrosshair
+    curr_mouse_pos = sf::Vector2f(sf::Mouse::getPosition(window));          //screen ccoordinates of mouse/cursor/handcrosshair
 
-    LMpress = sf::Mouse::buttonpress_check(sf::Mouse::Left);   
-    RMpress = sf::Mouse::buttonpress_check(sf::Mouse::Right); 
-    Rpress = sf::Keyboard::KBpress_check(sf::Keyboard::R);
+    LMpress = sf::Mouse::isButtonPressed(sf::Mouse::Left);   
+    RMpress = sf::Mouse::isButtonPressed(sf::Mouse::Right); 
+    Rpress = sf::Keyboard::isKeyPressed(sf::Keyboard::R);
 }
      
 bool class_handle_user_input::shot_detect() const {         //true for rm detect
