@@ -26,32 +26,36 @@ hunt_game_class::~hunt_game_class() { //destructor
 void hunt_game_class::initialize(int width, int height, const std::string& title) {
 	window = new sf::RenderWindow(sf::VideoMode(width, height), title);          //creates the game window
 
-	if (!landscape_texture_asset.loadFromFile("add the path to background here, should be png")) {          //load the background texture
+	if (!landscape_texture_asset.loadFromFile("C:\\Users\\Nicholas\\Downloads\\duckhunt background.png")) {          //load the background texture
         std::cout << "error failed to load the background textures :( " << std::endl;
     }
     else {
         backgroundSprite.setTexture(landscape_texture_asset);
     }
 
-	if (!asset_gun_crosshair.loadFromFile("add the png path here")) {                       //load the crosshair texture
+	if (!asset_gun_crosshair.loadFromFile("C:\\Users\\Nicholas\\Downloads\\crosshair.png")) {                       //load the crosshair texture
         std::cout << "error failed to load the crosshair texture/sprite" << std::endl;
     }
     else {
-        SFML_crosshair.setTexture(asset_gun_crosshair);               //
+        SFML_crosshair.setTexture(asset_gun_crosshair);   
+        SFML_crosshair.setScale(0.1f, 0.1f);
+        SFML_crosshair.setOrigin(SFML_crosshair.getGlobalBounds().width / 2, SFML_crosshair.getGlobalBounds().height / 2);
     }
 
     input_handler = std::make_unique<class_handle_user_input>();
-    fixed_line_shoot.set_linesize(sf::Vector2f(5.0f, static_cast<float>(height)));
-    fixed_line_shoot.set_colorfill(sf::Color::Red);                                   //this is the fixed shooting line on the side of screen. can ignore for now. just a backup incase we cant get hand aiming to work
-    fixed_line_shoot.set_line_position(width / 2.0f, 0.0f);
+
+    fixed_line_shoot.setSize(sf::Vector2f(5.0f, static_cast<float>(height)));
+    fixed_line_shoot.setFillColor(sf::Color::Red);                                   //this is the fixed shooting line on the side of screen. can ignore for now. just a backup incase we cant get hand aiming to work
+    fixed_line_shoot.setPosition(width / 2.0f, 0.0f);
 
     ducks.clear();
     duck_running = true;
+    duck_spawn_r();
 }
 
 void hunt_game_class::duck_spawn_r() {
     auto newDuck = std::make_unique<duck>();
-    newDuck->initialize("place texture path here", 100.0f);
+    newDuck->initialize("C:\\Users\\Nicholas\\Downloads\\duck.png", 200.0f);
     newDuck->spawn(window->getSize().x, window->getSize().y);   
     ducks.push_back(std::move(newDuck));
 }
@@ -60,7 +64,7 @@ void hunt_game_class::duck_collision_check() {
     for (auto& duck : ducks) {
 		if (duck->duck_flying_current()) {      //check if duck is flying
             if (!use_fixed_line && input_handler->shot_detect() && bullets > 0) {// check if user shot with bullets left
-                if (duck->hit_detect_true(SFML_crosshair.getter_areabounds())) {
+                if (duck->hit_detect_true(SFML_crosshair.getGlobalBounds())) {
                     duck->kill();
                     score++;
                     bullets--;                  //inrimenting score and bullets and breaking loop
@@ -71,3 +75,47 @@ void hunt_game_class::duck_collision_check() {
     }
 }
 
+void hunt_game_class::handleEvents() {} 
+
+void hunt_game_class::update(float deltaTime) {
+    ducks.erase(
+        std::remove_if(ducks.begin(), ducks.end(),
+            [](const std::unique_ptr<duck>& d) { return !d->isAlive(); }),
+        ducks.end()
+    );
+
+    if (ducks.empty()) {
+        duck_spawn_r();
+    }
+
+    for (auto& duck : ducks) {
+        duck->update(deltaTime, window->getSize().x, window->getSize().y);
+        if (!duck->isAlive() || !duck->duck_flying_current()) {
+            duck_spawn_r();
+            break; 
+        }
+    }
+}
+
+void hunt_game_class::render() {
+    if (window && window->isOpen()) {
+        window->clear(); // clear the window
+
+        // drawing background
+        window->draw(backgroundSprite);
+
+        // draw all ducks
+        for (const auto& duck : ducks) {
+            if (duck->isAlive()) { // render alive ducks only
+                duck->render(*window);
+            }
+        }
+
+        // draw crosshair
+        window->draw(SFML_crosshair);
+
+        // display all assets
+        window->display();
+    }
+}
+void hunt_game_class::shutdown() {}
