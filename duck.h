@@ -1,3 +1,4 @@
+
 #ifndef DUCK_H
 
 #define DUCK_H
@@ -14,7 +15,7 @@ private:
     float duck_speed_set;
     bool duck_alive;
     bool duck_moving;
-	                                                                  //explained in duck.cpp
+    //explained in duck.cpp
 public:
     duck();
     ~duck();
@@ -30,5 +31,5 @@ public:
     void kill();
     sf::FloatRect getBounds() const;
     sf::Vector2f getPosition() const { return position; }
-}; 
+};
 #endif 
