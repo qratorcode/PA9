@@ -31,7 +31,7 @@ void duck::spawn(float screenWidth, float screenHeight) {
 
     position.y = static_cast<float>(std::rand() % static_cast<int>(screenHeight));
 
-    duck_accel.x = 200.0f;
+    duck_accel.x = 650.0f;
     duck_accel.y = 0;
     duck_moving = true;
     duck_alive = true;
