@@ -11,7 +11,7 @@ hunt_game_class::hunt_game_class() :
     duck_running(false),
     score(0),
     hold_gun_up(false),                           //initializing with default values
-    bullets(3),
+    bullets(50),
     use_fixed_line(false),
     current_control_settings(ControlScheme::MOUSE_KEYBOARD) {
 }
@@ -58,7 +58,7 @@ void hunt_game_class::initialize(int width, int height, const std::string& title
 
 void hunt_game_class::duck_spawn_r() {
     auto newDuck = std::make_unique<duck>();
-    newDuck->initialize("C:\\Users\\Nicholas\\Downloads\\duck.png", 200.0f);
+    newDuck->initialize("C:\\Users\\Nicholas\\Downloads\\duck transpo.png", 200.0f);
     newDuck->spawn(window->getSize().x, window->getSize().y);
     ducks.push_back(std::move(newDuck));
 }
