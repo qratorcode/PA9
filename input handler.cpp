@@ -10,24 +10,24 @@ class_handle_user_input::class_handle_user_input() : //constructor intizilizing 
 }
 
 class_handle_user_input::~class_handle_user_input() {//simple destructor
-    
+
 }
 
 void class_handle_user_input::update(sf::RenderWindow& window) {      //every fram the input status will be updated
     past_tense_LMpress = LMpress;
     past_tense_RMpress = RMpress;
-                                          //previous states are stored
+    //previous states are stored
     past_tense_Rpress = Rpress;
 
     curr_mouse_pos = sf::Vector2f(sf::Mouse::getPosition(window));          //screen ccoordinates of mouse/cursor/handcrosshair
 
-    LMpress = sf::Mouse::isButtonPressed(sf::Mouse::Left);   
-    RMpress = sf::Mouse::isButtonPressed(sf::Mouse::Right); 
+    LMpress = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+    RMpress = sf::Mouse::isButtonPressed(sf::Mouse::Right);
     Rpress = sf::Keyboard::isKeyPressed(sf::Keyboard::R);
 }
-     
+
 bool class_handle_user_input::shot_detect() const {         //true for rm detect
-   
+
     return RMpress && !past_tense_RMpress;
 }
 
@@ -36,7 +36,7 @@ bool class_handle_user_input::shoot_being_held() const {        //true if right 
 }
 
 bool class_handle_user_input::reload_triggered() const { //true is r is pressed
-    
+
     return Rpress && !past_tense_Rpress;
 }
 
