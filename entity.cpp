@@ -7,7 +7,7 @@ game_entity_inclass::game_entity_inclass() :
 }
 
 game_entity_inclass::~game_entity_inclass() {
-    
+
 }          //destructor
 
 
@@ -20,8 +20,8 @@ initializes entity with texture
  all entities must be initialized before use
 
 */
-void game_entity_inclass::initialize(const std::string& texturePath) {      
-    if (!texture.loadFromFile(texturePath)) {                                   
+void game_entity_inclass::initialize(const std::string& texturePath) {
+    if (!texture.loadFromFile(texturePath)) {
         std::cout << "failed to load texture: " << texturePath << std::endl;
     }
     sprite.setTexture(texture);
@@ -33,6 +33,6 @@ void game_entity_inclass::update(float deltaTime, float screenWidth, float scree
 
 void game_entity_inclass::render(sf::RenderWindow& window) {
     if (active) {
-		window.draw(sprite);   //draw at current position
+        window.draw(sprite);   //draw at current position
     }
 }
