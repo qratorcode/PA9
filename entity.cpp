@@ -28,7 +28,7 @@ void game_entity_inclass::initialize(const std::string& texturePath) {
 }
 // screenWidth and screenHeight are used to set the position of the entity
 void game_entity_inclass::update(float deltaTime, float screenWidth, float screenHeight) {
-    sprite.set_line_position(position);
+    sprite.setPosition(position.x, position.y);
 }
 
 void game_entity_inclass::render(sf::RenderWindow& window) {

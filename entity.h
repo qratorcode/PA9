@@ -19,7 +19,7 @@ public:
     virtual void render(sf::RenderWindow& window);
 
     bool isActive() const { return active; }
-    sf::FloatRect getBounds() const { return sprite.getter_areabounds(); }
+    sf::FloatRect getBounds() const { return sprite.getGlobalBounds(); }
     sf::Vector2f getPosition() const { return position; }
 };
 #endif // ENTITY_H
