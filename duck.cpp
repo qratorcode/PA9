@@ -39,8 +39,8 @@ void duck::spawn(float screenWidth, float screenHeight) {
 
     sprite.setPosition(position); // this updates the sprite position
 
-    std::cout << "Duck spawned at position: (" << position.x << ", " << position.y << ") with acceleration: ("
-        << duck_accel.x << ", " << duck_accel.y << ")" << std::endl;
+    std::cout << "(debugstatement) duck spawn pos" << position.x << ", " << position.y << "____ with acceleration_____"
+        << duck_accel.x << ", " << duck_accel.y << "_" << std::endl;
 }
 
 void duck::update(float deltaTime, float screenWidth, float screenHeight) {
@@ -54,7 +54,7 @@ void duck::update(float deltaTime, float screenWidth, float screenHeight) {
    
 	game_entity_inclass::update(deltaTime, screenWidth, screenHeight); //calls base class update
 
-    std::cout << "[DEBUG] Sprite position updated to: (" << position.x << ", " << position.y << ")\n";
+    std::cout << "sprite position updated to (debugstatement)" << position.x << "___ " << position.y << "_\n";
     if (position.x > screenWidth) {
         duck_moving = false;
         active = false;
